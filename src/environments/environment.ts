@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://futdb.app/api',
+  apiKey: 'f1a11b97-8177-49f2-9800-b52e25e8023c'
 };
 
 /*
