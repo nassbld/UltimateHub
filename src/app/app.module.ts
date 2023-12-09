@@ -15,7 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    PlayerListComponent,
     CustomPipe,
     CustomDirective,
     PlayerListComponent,
