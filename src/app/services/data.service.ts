@@ -59,11 +59,11 @@ export class DataService {
   private getPlayerImageUrl(playerId: number): string {
     return `${this.apiUrl}/players/${playerId}/image`;
   }
-  
-  getPlayers(page: number = 1): Observable<{ players: Player[]}> {
+
+  getPlayers(page: number = 1): Observable<{players: Player[]}> {
     const url = `${this.apiUrl}/players`;
     const headers = this.getHeaders();
-  
+
     return this.http.get<any>(url, { headers, params: { page: page.toString()} }).pipe(
       map((response) => {
         if (response.items) {

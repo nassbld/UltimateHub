@@ -9,6 +9,7 @@ import { CustomDirective } from './shared/custom.directive';
 import { PlayerListComponent } from './players/player-list/player-list.component';
 import { PlayerDetailComponent } from './players/player-detail/player-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PlayerCardComponent } from './players/player-list/player-card/player-card.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     CustomDirective,
     PlayerListComponent,
     PlayerDetailComponent,
+    PlayerCardComponent,
   ],
   imports: [
     BrowserModule,

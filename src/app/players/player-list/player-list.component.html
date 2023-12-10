@@ -1,7 +1,8 @@
 <!-- header.component.html -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand text-white ms-4" href="#">Ultimate Hub</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarNav"
+          data-toggle="collapse" type="button">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="ms-auto me-4">
@@ -12,18 +13,20 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-12">
-      <input class="form-control" type="search" placeholder="Search Player" aria-label="Search">
+      <input aria-label="Search" class="form-control" placeholder="Search Player" type="search">
     </div>
   </div>
   <div class="row mt-4">
-    <div class="col-md-2 col-sm-6 mb-4" *ngFor="let player of players">
-      <div class="card player-card py-5" (click)="onCardClick(player)">
-        <img class="card-img-top" src="{{player.imageUrl}}">
-        <div class="card-body">
-          <h5 class="card-title">{{player.name}}</h5>
-          <p class="card-text">Key Statistic: {{player.statistic}}</p>
-        </div>
-      </div>
-    </div>
+    <ng-container *ngIf="players | async as playersList; else loadingOrEmpty">
+      <p>{{ playersList.players | json }}</p>
+      <section *ngFor="let player of playersList.players" class="col-md-2 col-sm-6 mb-4">
+        <p>card</p>
+        <app-player-card [player]="player"></app-player-card>
+      </section>
+    </ng-container>
+
+    <ng-template #loadingOrEmpty>
+      <p>Aucun joueur trouvé ou en attente de chargement...</p>
+    </ng-template>
   </div>
 </div>
