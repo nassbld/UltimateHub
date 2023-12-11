@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Player} from "../../../models/player";
-import {Router} from "@angular/router";
+import { Component, Input, OnInit } from '@angular/core';
+import { Player } from '../../../models/player';
+import { Router } from '@angular/router';
+import { DataService } from '../../../services/data.service';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-player-card',
@@ -8,19 +10,26 @@ import {Router} from "@angular/router";
   styleUrls: ['./player-card.component.scss']
 })
 export class PlayerCardComponent implements OnInit {
-  @Input()
-  player?: Player;
+  @Input() player!: Player;
+  public playerImageUrl: SafeUrl | undefined;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private dataService: DataService,
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.player)
-    console.log("hello")
+    this.getImageUrl();
   }
 
-  onCardClick(player: any) {
-    console.log('Clicked on player:', player.name);
-    this.router.navigate(['/player-details'], { state: { player } });
+  private getImageUrl(): void {
+    this.dataService.getImagePlayerById(this.player.id).subscribe(
+      (imageUrl: SafeUrl) => {
+        this.playerImageUrl = imageUrl;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de l\'image :', error);
+      }
+    );
   }
-
 }

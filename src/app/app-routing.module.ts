@@ -6,11 +6,11 @@ import {PlayerListComponent} from "./players/player-list/player-list.component";
 import {PlayerDetailComponent} from "./players/player-detail/player-detail.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Add this
-  { path: 'login', component: LoginComponent }, // Add this
-  { path: 'register', component: RegisterComponent }, // Add this
-  { path: 'player-list', component: PlayerListComponent }, // Add this
-  { path: 'player-details', component: PlayerDetailComponent }, // Add this
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, 
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'player-list', component: PlayerListComponent },
+  { path: 'player:id', component: PlayerDetailComponent },
 ];
 
 @NgModule({

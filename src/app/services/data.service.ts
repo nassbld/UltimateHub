@@ -5,6 +5,7 @@ import { Player } from '../models/player';
 import { environment } from 'src/environments/environment';
 import { WorkRate } from '../models/work-rate';
 import { Stats } from '../models/stats';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,10 @@ export class DataService {
 
   constructor(
     private readonly http: HttpClient,
+    private readonly sanitizer: DomSanitizer
   ) { }
 
-  private getHeaders(): HttpHeaders {
+  protected getHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'X-AUTH-TOKEN': this.apiKey
@@ -40,7 +42,6 @@ export class DataService {
       weakFoot: item.weakFoot,
       skillMoves: item.skillMoves,
       rating: item.rating,
-      imageUrl: this.getPlayerImageUrl(item.id),
       color: item.color,
       workRate: { attack: item.attackWorkRate, defense: item.defenseWorkRate } as WorkRate,
       stats: {
@@ -56,11 +57,7 @@ export class DataService {
     };
   }
 
-  private getPlayerImageUrl(playerId: number): string {
-    return `${this.apiUrl}/players/${playerId}/image`;
-  }
-
-  getPlayers(page: number = 1): Observable<{players: Player[]}> {
+   getPlayers(page: number = 1): Observable<Player[]> {
     const url = `${this.apiUrl}/players`;
     const headers = this.getHeaders();
 
@@ -76,4 +73,21 @@ export class DataService {
       })
     );
   }
+
+getImagePlayerById(playerId: number): Observable<string> {
+  const url = `${this.apiUrl}/players/${playerId}/image`;
+  const headers = this.getHeaders();
+  const options = { headers, responseType: 'blob' as 'blob' };
+
+  return this.http.get(url, options).pipe(
+    map((imageBlob: Blob) => {
+      const imageUrl = URL.createObjectURL(imageBlob);
+      return this.sanitizer.bypassSecurityTrustUrl(imageUrl) as string;
+    })
+  );
+}
+
+// getImageNationalityById(nationalityId: number): Observable<string> {} // TODO
+// getImageClubById(clubId: number): Observable<string> {} // TODO
+  
 }

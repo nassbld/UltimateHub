@@ -1,8 +1,10 @@
-<div (click)="onCardClick(player)" class="card player-card py-5 text-center">
-  <img class="card-img-top" src="{{player?.imageUrl}}">
-  <div class="card-body">
-    <h5 class="card-title">{{ player?.name }}</h5>
-    <p class="card-text">Key Statistic: {{ player?.rating }}</p>
-  </div>
-  <p>123</p>
-</div>
+<img [src]="playerImageUrl" alt="">
+<p> {{ player.name}} </p>
+<p> {{ player.rating }}</p>
+<p> {{ player.position}} </p>
+<p> PAC {{ player.stats.pace }}</p>
+<p> SHO {{ player.stats.shooting }}</p>
+<p> PAS {{ player.stats.passing }}</p>
+<p> DRI {{ player.stats.dribbling }}</p>
+<p> DEF {{ player.stats.defending }}</p>
+<p> PHY {{ player.stats.physicality }}</p>

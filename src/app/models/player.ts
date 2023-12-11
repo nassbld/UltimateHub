@@ -16,7 +16,6 @@ export interface Player {
     weakFoot: number;
     skillMoves: number;
     rating: number;
-    imageUrl: string;
     color: string;
     workRate: WorkRate;
     stats: Stats;
