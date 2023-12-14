@@ -11,6 +11,7 @@ import { PlayerDetailComponent } from './players/player-detail/player-detail.com
 import { HttpClientModule } from '@angular/common/http';
 import { PlayerCardComponent } from './players/player-list/player-card/player-card.component';
 import { LoaderComponent } from './loader/loader.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoaderComponent } from './loader/loader.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]

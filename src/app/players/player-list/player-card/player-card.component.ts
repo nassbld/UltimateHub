@@ -14,7 +14,6 @@ export class PlayerCardComponent implements OnInit {
   public playerImageUrl: SafeUrl | undefined;
 
   constructor(
-    private router: Router,
     private dataService: DataService,
   ) { }
 

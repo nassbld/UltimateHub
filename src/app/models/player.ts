@@ -1,5 +1,6 @@
 import { Stats } from "./stats";
 import { WorkRate } from "./work-rate";
+import {AdvancedStats} from "./advanced-stats";
 
 export interface Player {
     id: number;
@@ -19,6 +20,7 @@ export interface Player {
     color: string;
     workRate: WorkRate;
     stats: Stats;
+    advancedStats: AdvancedStats;
     idNationality: number;
     idClub: number;
 }
