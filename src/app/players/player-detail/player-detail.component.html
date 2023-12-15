@@ -1,1 +1,42 @@
-<p>player-detail works!</p>
+<div class="row mt-4 mx-4">
+  <div class="col">
+    <h1 class="text-center">Détail du joueur</h1>
+
+    <div class="row mt-4 mx-4" *ngIf="!player && !imagesLoaded">
+      <app-loader></app-loader>
+    </div>
+    
+    <div class="row mt-4 mx-4" *ngIf="player && imagesLoaded">
+      <div>{{player.firstName}}</div>
+      <div>{{player.lastName}}</div>
+      <div>{{player.position}}</div>
+      <div>{{player.rating}}</div>
+      <div>{{player.foot}}</div>
+      <div>{{player.height}}</div>
+      <div>{{player.weight}}</div>
+      <div>{{player.age}}</div>
+      <div>{{player.birthDate | date:"dd/MM/yyyy" }}</div>
+      <div>{{player.workRate.attack}}</div>
+      <div>{{player.workRate.defense}}</div>
+      <div>{{player.weakFoot}}</div>
+      <div>{{player.skillMoves}}</div>
+      <div>{{player.rating}}</div>
+      <div>{{player.color}}</div>
+      <div>{{player.stats.pace}}</div>
+      <div>{{player.stats.shooting}}</div>
+      <div>{{player.stats.passing}}</div>
+      <div>{{player.stats.dribbling}}</div>
+      <div>{{player.stats.defending}}</div>
+      <div>{{player.stats.physicality}}</div>
+
+      <div> {{player.idClub}}</div>
+      <div> {{player.idNationality}}</div>
+
+      <img [src]="this.playerImageUrl" alt="">
+      <img [src]="this.playerClubImageUrl" alt="">
+      <img [src]="this.playerNationalityImageUrl" alt="">
+
+    </div>
+  </div>
+</div>
+

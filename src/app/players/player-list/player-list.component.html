@@ -1,1 +1,15 @@
-<p>player-list works!</p>
+<div class="row mt-4 mx-4">
+  <div class="col-12">
+    <input aria-label="Search" class="form-control" placeholder="Search Player" type="search">
+  </div>
+</div>
+
+<div class="row mt-4 mx-4" *ngIf="!playerList">
+  <app-loader></app-loader>
+</div>
+
+<div class="row m-5">
+  <div *ngFor="let player of playerList" class="col-md-3 col-sm-6 mb-4 card">
+    <app-player-card [player]="player"></app-player-card>
+  </div>
+</div>

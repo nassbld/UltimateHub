@@ -1,0 +1,20 @@
+<div (click)="goToPlayerDetail(player)" class="card player-card text-center justify-content-center">
+  <img [src]="playerImageUrl" alt="" class="card-img-top">
+  <div class="card-body">
+    <h4 class="card-title">{{ player.name }}</h4>
+    <h5>{{ player.rating }}</h5>
+    <h6> {{ player.position }} </h6>
+    <div class="row">
+      <div class="col-md-6">
+        <p> PAC {{ player.stats.pace }}</p>
+        <p> SHO {{ player.stats.shooting }}</p>
+        <p> PAS {{ player.stats.passing }}</p>
+      </div>
+      <div class="col-md-6">
+        <p> DRI {{ player.stats.dribbling }}</p>
+        <p> DEF {{ player.stats.defending }}</p>
+        <p> PHY {{ player.stats.physicality }}</p>
+      </div>
+    </div>
+  </div>
+</div>
