@@ -14,14 +14,15 @@ export class PlayerCardComponent implements OnInit {
   public playerImageUrl: SafeUrl | undefined;
 
   constructor(
+    private router: Router,
     private dataService: DataService,
   ) { }
 
   ngOnInit(): void {
-    this.getImageUrl();
+    this.getImagePlayer();
   }
 
-  private getImageUrl(): void {
+  private getImagePlayer(): void {
     this.dataService.getImagePlayerById(this.player.id).subscribe(
       (imageUrl: SafeUrl) => {
         this.playerImageUrl = imageUrl;
@@ -30,5 +31,9 @@ export class PlayerCardComponent implements OnInit {
         console.error('Erreur lors de la récupération de l\'image :', error);
       }
     );
+  }
+
+  goToPlayerDetail(player: Player): void {
+    this.router.navigate(['/player-details', player.id]);
   }
 }

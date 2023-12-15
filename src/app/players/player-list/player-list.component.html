@@ -1,15 +1,3 @@
-<!-- header.component.html -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand text-white ms-4" href="#">Ultimate Hub</a>
-  <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-    data-target="#navbarNav" data-toggle="collapse" type="button">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="ms-auto me-4">
-    <span class="badge bg-danger">Utilisateur: John Doe</span>
-  </div>
-</nav>
-
 <div class="row mt-4 mx-4">
   <div class="col-12">
     <input aria-label="Search" class="form-control" placeholder="Search Player" type="search">
@@ -20,8 +8,8 @@
   <app-loader></app-loader>
 </div>
 
-<div class="row mt-4 mx-4">
-  <div *ngFor="let player of playerList" class="col-md-3 col-sm-6 mb-4">
+<div class="row m-5">
+  <div *ngFor="let player of playerList" class="col-md-3 col-sm-6 mb-4 card">
     <app-player-card [player]="player"></app-player-card>
   </div>
 </div>

@@ -138,8 +138,8 @@ export class DataService {
           reflexes: item.reflexes
         }
       } as AdvancedStats,
-      idNationality: item.idNationality,
-      idClub: item.idClub
+      idNationality: item.nation,
+      idClub: item.club
     };
   }
 
@@ -173,24 +173,41 @@ export class DataService {
     );
   }
 
-  getPlayerWithAdvancedStatsById(playerId: string): Observable<Player> {
+  getPlayerWithAdvancedStatsById(playerId: number): Observable<Player> {
     const url = `${this.apiUrl}/players/${playerId}`;
     const headers = this.getHeaders();
-
+  
     return this.http.get<any>(url, {headers}).pipe(
       map((response) => {
-        if (response.items) {
-          return response.items.map((item: any) =>
-            this.convertToPlayerWithAdvancedStats(item)
-          );
-        } else {
-          return [];
-        }
+        return this.convertToPlayerWithAdvancedStats(response.player);
       })
     );
   }
 
-// getImageNationalityById(nationalityId: number): Observable<string> {} // TODO
-// getImageClubById(clubId: number): Observable<string> {} // TODO
+getImageNationalityById(nationalityId: number): Observable<string> {
+    const url = `${this.apiUrl}/nations/${nationalityId}/image`;
+    const headers = this.getHeaders();
+    const options = {headers, responseType: 'blob' as 'blob'};
+
+    return this.http.get(url, options).pipe(
+      map((imageBlob: Blob) => {
+        const imageUrl = URL.createObjectURL(imageBlob);
+        return this.sanitizer.bypassSecurityTrustUrl(imageUrl) as string;
+      })
+    );
+  }
+
+  getImageClubById(clubId: number): Observable<string> {
+    const url = `${this.apiUrl}/clubs/${clubId}/image`;
+    const headers = this.getHeaders();
+    const options = {headers, responseType: 'blob' as 'blob'};
+
+    return this.http.get(url, options).pipe(
+      map((imageBlob: Blob) => {
+        const imageUrl = URL.createObjectURL(imageBlob);
+        return this.sanitizer.bypassSecurityTrustUrl(imageUrl) as string;
+      })
+    );
+  } 
 
 }

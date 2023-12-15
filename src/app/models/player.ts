@@ -20,7 +20,7 @@ export interface Player {
     color: string;
     workRate: WorkRate;
     stats: Stats;
-    advancedStats: AdvancedStats;
+    advancedStats?: AdvancedStats;
     idNationality: number;
     idClub: number;
 }

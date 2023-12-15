@@ -1,4 +1,4 @@
-<div [routerLink]="['/player-details', player.id]" class="card player-card py-5 text-center justify-content-center">
+<div (click)="goToPlayerDetail(player)" class="card player-card text-center justify-content-center">
   <img [src]="playerImageUrl" alt="" class="card-img-top">
   <div class="card-body">
     <h4 class="card-title">{{ player.name }}</h4>
