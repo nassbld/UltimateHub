@@ -1,5 +1,5 @@
 <div (click)="goToPlayerDetail(player)" class="card player-card text-center justify-content-center">
-  <img [src]="playerImageUrl" alt="" class="card-img-top">
+  <img class="card-img-top" [src]="playerImageUrl" loading="lazy">
   <div class="card-body">
     <h4 class="card-title">{{ player.name }}</h4>
     <h5>{{ player.rating }}</h5>

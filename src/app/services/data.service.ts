@@ -143,19 +143,16 @@ export class DataService {
     };
   }
 
-  getPlayers(page: number = 1): Observable<Player[]> {
+  getPlayers(page: number = 1): Observable<{ players: Player[], pagination: any }> {
     const url = `${this.apiUrl}/players`;
     const headers = this.getHeaders();
 
-    return this.http.get<any>(url, {headers, params: {page: page.toString()}}).pipe(
+    return this.http.get<any>(url, { headers, params: { page: page.toString() } }).pipe(
       map((response) => {
-        if (response.items) {
-          return response.items.map((item: any) =>
-            this.convertToPlayer(item)
-          );
-        } else {
-          return [];
-        }
+        const players = response.items ? response.items.map((item: any) => this.convertToPlayer(item)) : [];
+        const pagination = response.pagination || {};
+
+        return { players, pagination };
       })
     );
   }

@@ -13,6 +13,8 @@ import { PlayerCardComponent } from './players/player-list/player-card/player-ca
 import { LoaderComponent } from './loader/loader.component';
 import {NgOptimizedImage} from "@angular/common";
 import { HeaderComponent } from './header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
